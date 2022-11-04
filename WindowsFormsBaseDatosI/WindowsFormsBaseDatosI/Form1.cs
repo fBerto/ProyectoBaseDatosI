@@ -46,5 +46,12 @@ namespace WindowsFormsBaseDatosI
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = TablaObreros.GetVistaObrerosPorObras();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CEntidadObreros TablaObreros = new CEntidadObreros();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = TablaObreros.GetVistaDireccionProvedores();
+        }
     }
 }

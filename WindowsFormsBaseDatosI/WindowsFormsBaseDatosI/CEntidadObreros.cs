@@ -83,6 +83,23 @@ namespace WindowsFormsBaseDatosI
             }
             return TablaGenerada;
         }
+        public DataTable GetVistaDireccionProvedores()
+        {
+            DataTable TablaGenerada = new DataTable();
+
+            string query = "EXEC P_direccionProvedores";
+
+            using (SqlConnection connection = ObtenerConecionSQL())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                {
+                    TablaGenerada.Load(command.ExecuteReader());
+                }
+                connection.Close();
+            }
+            return TablaGenerada;
+        }
 
 
 
