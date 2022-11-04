@@ -14,11 +14,11 @@ namespace WindowsFormsBaseDatosI
 {
     public class CEntidadObreros
     {
-        private string connectionString = "Data Source = DESKTOP-OL106RH\\SQLEXPRESS; Initial Catalog = constructora;" +
+        private string pathConneccion = "Data Source = DESKTOP-OL106RH\\SQLEXPRESS; Initial Catalog = constructora;" +
              "User= berto; Password = francobertoni12";
         public SqlConnection ObtenerConecionSQL()
         {
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(pathConneccion);
             return connection;
         }
         public bool ConnectionOk()
@@ -34,7 +34,7 @@ namespace WindowsFormsBaseDatosI
             }
             return true;
         }
-        
+
         public List<Obreros> GetTablaObreros()
         {
             List<Obreros> obreros = new List<Obreros>();
@@ -44,27 +44,29 @@ namespace WindowsFormsBaseDatosI
                 SqlCommand command = new SqlCommand(query, connection);
                 try
                 {
-                   connection.Open();
+                    connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        Obreros obrero = new Obreros();
-                        obrero.CodigoObrero = reader.GetInt32(0);// si lo demajos tipo  reader[0]; obtenemos un objeto
-                        obrero.DniObrero = reader.GetInt32(1);
-                        obrero.NombreObrero = reader.GetString(2);
+                        int codigo = reader.GetInt32(0);// si lo demajos tipo  reader[0]; obtenemos un objeto
+                        int dni = reader.GetInt32(1);
+                        string nombre = reader.GetString(2);
+
+                        Obreros obrero = new Obreros(codigo, dni, nombre);
+
                         obreros.Add(obrero);
                     }
                     reader.Close();
                     connection.Close();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw new Exception("Error" + ex.Message);
                 }
             }
             return obreros;
         }
-       
+
     }
 
 }
