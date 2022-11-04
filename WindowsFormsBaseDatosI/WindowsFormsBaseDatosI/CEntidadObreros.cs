@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Drawing.Printing;
 using System.Security.Policy;
+using System.Collections;
 
 namespace WindowsFormsBaseDatosI
 {
@@ -66,6 +66,25 @@ namespace WindowsFormsBaseDatosI
             }
             return obreros;
         }
+        public DataTable GetVistaObrerosPorObras()
+        {
+            DataTable TablaGenerada = new DataTable();
+
+            string query = "select * from view_ObrerosPorObras";
+
+            using (SqlConnection connection = ObtenerConecionSQL())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                {
+                    TablaGenerada.Load(command.ExecuteReader());
+                }
+                connection.Close();
+            }
+            return TablaGenerada;
+        }
+
+
 
     }
 

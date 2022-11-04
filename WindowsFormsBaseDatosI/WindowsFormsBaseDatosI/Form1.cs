@@ -18,7 +18,7 @@ namespace WindowsFormsBaseDatosI
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BaseConectada_Click(object sender, EventArgs e)
         {
             CEntidadObreros cEntidadObreros = new CEntidadObreros();
             if (cEntidadObreros.ConnectionOk())
@@ -38,6 +38,13 @@ namespace WindowsFormsBaseDatosI
             CEntidadObreros TablaObreros = new CEntidadObreros();
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = TablaObreros.GetTablaObreros();
+        }
+
+        private void ResumenesObras_Click(object sender, EventArgs e)
+        {
+            CEntidadObreros TablaObreros = new CEntidadObreros();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = TablaObreros.GetVistaObrerosPorObras();
         }
     }
 }
