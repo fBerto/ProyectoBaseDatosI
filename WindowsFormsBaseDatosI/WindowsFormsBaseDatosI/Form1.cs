@@ -28,5 +28,16 @@ namespace WindowsFormsBaseDatosI
             else
                 MessageBox.Show("no conectado");
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ActualizarGrilla();
+        }
+        private void ActualizarGrilla()
+        {
+            CEntidadObreros TablaObreros = new CEntidadObreros();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = TablaObreros.GetTablaObreros();
+        }
     }
 }
