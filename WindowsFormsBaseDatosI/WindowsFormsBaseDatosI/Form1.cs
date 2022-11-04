@@ -20,7 +20,7 @@ namespace WindowsFormsBaseDatosI
 
         private void BaseConectada_Click(object sender, EventArgs e)
         {
-            CEntidadObreros cEntidadObreros = new CEntidadObreros();
+            UtilidadesObreros cEntidadObreros = new UtilidadesObreros();
             if (cEntidadObreros.ConnectionOk())
             {
                 MessageBox.Show("conectado");
@@ -29,29 +29,31 @@ namespace WindowsFormsBaseDatosI
                 MessageBox.Show("no conectado");
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form_LoadTablaObreros(object sender, EventArgs e)
         {
             ActualizarGrilla();
         }
         private void ActualizarGrilla()
         {
-            CEntidadObreros TablaObreros = new CEntidadObreros();
+            UtilidadesObreros TablaObreros = new UtilidadesObreros();
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = TablaObreros.GetTablaObreros();
         }
 
         private void ResumenesObras_Click(object sender, EventArgs e)
         {
-            CEntidadObreros TablaObreros = new CEntidadObreros();
+            string vista = "view_ObrerosPorObras";
+            UtilidadesObreros TablaObreros = new UtilidadesObreros();
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = TablaObreros.GetVistaObrerosPorObras();
+            dataGridView1.DataSource = TablaObreros.GetVista(vista);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void ProcedimientoAlmacenado_Click(object sender, EventArgs e)
         {
-            CEntidadObreros TablaObreros = new CEntidadObreros();
+            string procedimiento = "P_direccionProvedores";
+            UtilidadesObreros TablaObreros = new UtilidadesObreros();
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = TablaObreros.GetVistaDireccionProvedores();
+            dataGridView1.DataSource = TablaObreros.GetProcedimiento(procedimiento);
         }
     }
 }
