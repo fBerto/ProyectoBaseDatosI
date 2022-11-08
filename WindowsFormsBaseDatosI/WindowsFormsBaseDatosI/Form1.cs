@@ -33,6 +33,7 @@ namespace WindowsFormsBaseDatosI
         {
             ActualizarGrilla();
         }
+
         private void ActualizarGrilla()
         {
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
@@ -54,6 +55,16 @@ namespace WindowsFormsBaseDatosI
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = TablaObreros.GetProcedimiento(procedimiento);
+        }
+
+        private void agregarObrero_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void botonEliminarObrero_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

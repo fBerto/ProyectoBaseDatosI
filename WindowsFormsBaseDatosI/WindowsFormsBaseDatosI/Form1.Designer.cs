@@ -33,7 +33,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.agregarObrero = new System.Windows.Forms.Button();
+            this.botonEliminarObrero = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,21 +85,33 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Tabla de los Obreros";
             // 
-            // button4
+            // agregarObrero
             // 
-            this.button4.Location = new System.Drawing.Point(27, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Agregar ";
-            this.button4.UseVisualStyleBackColor = true;
+            this.agregarObrero.Location = new System.Drawing.Point(27, 12);
+            this.agregarObrero.Name = "agregarObrero";
+            this.agregarObrero.Size = new System.Drawing.Size(103, 23);
+            this.agregarObrero.TabIndex = 5;
+            this.agregarObrero.Text = "Agregar Obrero";
+            this.agregarObrero.UseVisualStyleBackColor = true;
+            this.agregarObrero.Click += new System.EventHandler(this.agregarObrero_Click);
+            // 
+            // botonEliminarObrero
+            // 
+            this.botonEliminarObrero.Location = new System.Drawing.Point(413, 12);
+            this.botonEliminarObrero.Name = "botonEliminarObrero";
+            this.botonEliminarObrero.Size = new System.Drawing.Size(112, 23);
+            this.botonEliminarObrero.TabIndex = 6;
+            this.botonEliminarObrero.Text = "Eliminar Obrero";
+            this.botonEliminarObrero.UseVisualStyleBackColor = true;
+            this.botonEliminarObrero.Click += new System.EventHandler(this.botonEliminarObrero_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 318);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.botonEliminarObrero);
+            this.Controls.Add(this.agregarObrero);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -120,7 +133,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button agregarObrero;
+        private System.Windows.Forms.Button botonEliminarObrero;
     }
 }
 

@@ -17,11 +17,13 @@ namespace WindowsFormsBaseDatosI
 
         private string pathConneccion = "Data Source = DESKTOP-OL106RH\\SQLEXPRESS; Initial Catalog = constructora;" +
              "User= berto; Password = francobertoni12";
+
         public SqlConnection ObtenerConecionSQL()
         {
             SqlConnection connection = new SqlConnection(pathConneccion);
             return connection;
         }
+
         public bool ConnectionOk()
         {
             try
@@ -35,6 +37,7 @@ namespace WindowsFormsBaseDatosI
             }
             return true;
         }
+
         public DataTable GetVista(string vista )
         {
             DataTable TablaGenerada = new DataTable();
@@ -52,6 +55,7 @@ namespace WindowsFormsBaseDatosI
             }
             return TablaGenerada;
         }
+
         public DataTable GetProcedimiento(string procedimiento )
         {
             DataTable TablaGenerada = new DataTable();
