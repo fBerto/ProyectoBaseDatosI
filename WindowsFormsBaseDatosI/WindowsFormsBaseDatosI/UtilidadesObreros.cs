@@ -17,6 +17,7 @@ namespace WindowsFormsBaseDatosI
         public List<Obreros> GetTablaObreros()
         {
             List<Obreros> obreros = new List<Obreros>();
+
             string query = "select CodigoObrero,DniObrero,NombreObrero from Obrero";
             using (SqlConnection connection = ObtenerConecionSQL())
             {
@@ -46,6 +47,11 @@ namespace WindowsFormsBaseDatosI
             return obreros;
         }
 
-    }
+        public void EliminarObrero(int codigoObrero)
+        {
+            UtilidadesBaseDatos utilidad = new UtilidadesBaseDatos();
 
+            utilidad.deleteRow("Obrero", "CodigoObrero", codigoObrero.ToString());
+        }
+    }
 }

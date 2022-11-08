@@ -8,14 +8,14 @@ namespace WindowsFormsBaseDatosI
 {
     public class Obreros
     {
-        public int CodigoObrero { get; set; }
-        public int DniObrero { get; set; }
-        public string NombreObrero { get; set; }
+        public int Codigo { get; set; }
+        public int Dni { get; set; }
+        public string Nombre { get; set; }
         public Obreros(int codigoObrero, int dniObrero, string nombreObrero)
         {
-            CodigoObrero = codigoObrero;
-            DniObrero = dniObrero;
-            NombreObrero = nombreObrero;
+            Codigo = codigoObrero;
+            Dni = dniObrero;
+            Nombre = nombreObrero;
         }
     }
 }

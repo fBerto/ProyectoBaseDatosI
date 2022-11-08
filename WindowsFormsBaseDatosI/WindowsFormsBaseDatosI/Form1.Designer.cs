@@ -28,23 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvObreros = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.agregarObrero = new System.Windows.Forms.Button();
-            this.botonEliminarObrero = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvObreros)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvObreros
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 49);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(534, 195);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvObreros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvObreros.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.DNI,
+            this.Nombre,
+            this.Eliminar});
+            this.dgvObreros.Location = new System.Drawing.Point(12, 49);
+            this.dgvObreros.Name = "dgvObreros";
+            this.dgvObreros.Size = new System.Drawing.Size(534, 195);
+            this.dgvObreros.TabIndex = 0;
+            this.dgvObreros.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvObreros_CellContentClick);
             // 
             // button1
             // 
@@ -85,42 +93,43 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Tabla de los Obreros";
             // 
-            // agregarObrero
+            // Codigo
             // 
-            this.agregarObrero.Location = new System.Drawing.Point(27, 12);
-            this.agregarObrero.Name = "agregarObrero";
-            this.agregarObrero.Size = new System.Drawing.Size(103, 23);
-            this.agregarObrero.TabIndex = 5;
-            this.agregarObrero.Text = "Agregar Obrero";
-            this.agregarObrero.UseVisualStyleBackColor = true;
-            this.agregarObrero.Click += new System.EventHandler(this.agregarObrero_Click);
+            this.Codigo.DataPropertyName = "Codigo";
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
             // 
-            // botonEliminarObrero
+            // DNI
             // 
-            this.botonEliminarObrero.Location = new System.Drawing.Point(413, 12);
-            this.botonEliminarObrero.Name = "botonEliminarObrero";
-            this.botonEliminarObrero.Size = new System.Drawing.Size(112, 23);
-            this.botonEliminarObrero.TabIndex = 6;
-            this.botonEliminarObrero.Text = "Eliminar Obrero";
-            this.botonEliminarObrero.UseVisualStyleBackColor = true;
-            this.botonEliminarObrero.Click += new System.EventHandler(this.botonEliminarObrero_Click);
+            this.DNI.DataPropertyName = "Dni";
+            this.DNI.HeaderText = "DNI";
+            this.DNI.Name = "DNI";
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 318);
-            this.Controls.Add(this.botonEliminarObrero);
-            this.Controls.Add(this.agregarObrero);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvObreros);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form_LoadTablaObreros);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvObreros)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,13 +137,15 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvObreros;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button agregarObrero;
-        private System.Windows.Forms.Button botonEliminarObrero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
     }
 }
 

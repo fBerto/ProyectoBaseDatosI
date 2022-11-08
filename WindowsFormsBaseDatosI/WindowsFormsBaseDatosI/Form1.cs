@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -36,35 +37,71 @@ namespace WindowsFormsBaseDatosI
 
         private void ActualizarGrilla()
         {
+            dgvObreros.AutoGenerateColumns = false;
+
+            HacerVisibleColumnaEliminar(true);
+
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = TablaObreros.GetTablaObreros();
+            dgvObreros.DataSource = null;
+            dgvObreros.DataSource = TablaObreros.GetTablaObreros();
+        }
+
+        private void HacerVisibleColumnaEliminar(bool esVisible)
+        {
+            UtilidadesGrilla utilidad = new UtilidadesGrilla();
+            int indiceEliminar = utilidad.ObtenerIndice(dgvObreros, "Eliminar");
+
+            dgvObreros.Columns[indiceEliminar].Visible = esVisible;
         }
 
         private void ResumenesObras_Click(object sender, EventArgs e)
         {
+            dgvObreros.AutoGenerateColumns = true;
+
+            HacerVisibleColumnaEliminar(false);
+
             string vista = "view_ObrerosPorObras";
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = TablaObreros.GetVista(vista);
+            dgvObreros.DataSource = null;
+            dgvObreros.DataSource = TablaObreros.GetVista(vista);
         }
 
         private void ProcedimientoAlmacenado_Click(object sender, EventArgs e)
         {
+            dgvObreros.AutoGenerateColumns = true;
+
+            HacerVisibleColumnaEliminar(false);
+
             string procedimiento = "P_direccionProvedores";
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = TablaObreros.GetProcedimiento(procedimiento);
+            dgvObreros.DataSource = null;
+            dgvObreros.DataSource = TablaObreros.GetProcedimiento(procedimiento);
         }
 
-        private void agregarObrero_Click(object sender, EventArgs e)
+        private void dgvObreros_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            UtilidadesGrilla utilidad = new UtilidadesGrilla();
 
-        }
+            int indiceEliminar = utilidad.ObtenerIndice(dgvObreros, "Eliminar");
 
-        private void botonEliminarObrero_Click(object sender, EventArgs e)
-        {
+            if (e.RowIndex >= 0)
+            {
+                Obreros obreroSeleccionado = dgvObreros.Rows[e.RowIndex].DataBoundItem as Obreros;
+                int codigoObrero = obreroSeleccionado.Codigo;
 
+                if (indiceEliminar == e.ColumnIndex)
+                {
+                    DialogResult resultado = MessageBox.Show("¿Está seguro que desea eliminar el obrero?", "Eliminar obrero", MessageBoxButtons.OKCancel);
+
+                    if (resultado == DialogResult.OK)
+                    {
+                        UtilidadesObreros utilidadesObreros = new UtilidadesObreros();
+                        utilidadesObreros.EliminarObrero(codigoObrero);
+
+                        ActualizarGrilla();
+                    }
+                }
+            }
         }
     }
 }

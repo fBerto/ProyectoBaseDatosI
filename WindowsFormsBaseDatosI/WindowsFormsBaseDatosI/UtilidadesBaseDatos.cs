@@ -14,9 +14,8 @@ namespace WindowsFormsBaseDatosI
 {
     public class UtilidadesBaseDatos
     {
-
-        private string pathConneccion = "Data Source = DESKTOP-OL106RH\\SQLEXPRESS; Initial Catalog = constructora;" +
-             "User= berto; Password = francobertoni12";
+        private string pathConneccion = "Data Source = THINKPAD_FEDE; Initial Catalog = constructora;" +
+             "User= sa; Password = wnwCWPF3nJDHff";
 
         public SqlConnection ObtenerConecionSQL()
         {
@@ -72,6 +71,26 @@ namespace WindowsFormsBaseDatosI
                 connection.Close();
             }
             return TablaGenerada;
+        }
+
+        public void deleteRow(string table, string columnName, string IDNumber)
+        {
+            try
+            {
+                using (SqlConnection con = ObtenerConecionSQL())
+                {
+                    con.Open();
+                    using (SqlCommand command = new SqlCommand("DELETE FROM " + table + " WHERE " + columnName + " = '" + IDNumber + "'", con))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
+            }
+            catch (SystemException ex)
+            {
+                MessageBox.Show(string.Format("An error occurred: {0}", ex.Message));
+            }
         }
     }
 }
