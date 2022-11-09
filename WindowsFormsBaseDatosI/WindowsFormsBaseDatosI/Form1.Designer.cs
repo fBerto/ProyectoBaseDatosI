@@ -29,19 +29,24 @@
         private void InitializeComponent()
         {
             this.dgvObreros = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelNombreTabla = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.verToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.obrerosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resumenesObrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resumenProveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelCargarObrero = new System.Windows.Forms.Label();
+            this.textBoxDNI = new System.Windows.Forms.TextBox();
+            this.textBoxNombre = new System.Windows.Forms.TextBox();
+            this.buttonCargarObrero = new System.Windows.Forms.Button();
+            this.labelNombre = new System.Windows.Forms.Label();
+            this.labelDNI = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObreros)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -52,40 +57,15 @@
             this.dgvObreros.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,
             this.DNI,
-            this.Nombre,
-            this.Eliminar});
-            this.dgvObreros.Location = new System.Drawing.Point(12, 49);
+            this.Nombre});
+            this.dgvObreros.Location = new System.Drawing.Point(12, 40);
             this.dgvObreros.Name = "dgvObreros";
             this.dgvObreros.Size = new System.Drawing.Size(534, 195);
             this.dgvObreros.TabIndex = 0;
-            this.dgvObreros.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvObreros_CellContentClick);
-            // 
-            // Codigo
-            // 
-            this.Codigo.DataPropertyName = "Codigo";
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            // 
-            // DNI
-            // 
-            this.DNI.DataPropertyName = "Dni";
-            this.DNI.HeaderText = "DNI";
-            this.DNI.Name = "DNI";
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 266);
+            this.button1.Location = new System.Drawing.Point(361, 332);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(118, 23);
             this.button1.TabIndex = 1;
@@ -95,7 +75,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(179, 265);
+            this.button2.Location = new System.Drawing.Point(345, 292);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(134, 24);
             this.button2.TabIndex = 2;
@@ -105,7 +85,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(364, 265);
+            this.button3.Location = new System.Drawing.Point(331, 251);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(161, 24);
             this.button3.TabIndex = 3;
@@ -113,14 +93,14 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.ProcedimientoAlmacenado_Click);
             // 
-            // label1
+            // labelNombreTabla
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(208, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Tabla de los Obreros";
+            this.labelNombreTabla.AutoSize = true;
+            this.labelNombreTabla.Location = new System.Drawing.Point(231, 24);
+            this.labelNombreTabla.Name = "labelNombreTabla";
+            this.labelNombreTabla.Size = new System.Drawing.Size(105, 13);
+            this.labelNombreTabla.TabIndex = 4;
+            this.labelNombreTabla.Text = "Tabla de los Obreros";
             // 
             // menuStrip1
             // 
@@ -163,12 +143,87 @@
             this.resumenProveedoresToolStripMenuItem.Text = "Resumen Proveedores";
             this.resumenProveedoresToolStripMenuItem.Click += new System.EventHandler(this.resumenProveedoresToolStripMenuItem_Click);
             // 
+            // Codigo
+            // 
+            this.Codigo.DataPropertyName = "Codigo";
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            // 
+            // DNI
+            // 
+            this.DNI.DataPropertyName = "Dni";
+            this.DNI.HeaderText = "DNI";
+            this.DNI.Name = "DNI";
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // labelCargarObrero
+            // 
+            this.labelCargarObrero.AutoSize = true;
+            this.labelCargarObrero.Location = new System.Drawing.Point(13, 257);
+            this.labelCargarObrero.Name = "labelCargarObrero";
+            this.labelCargarObrero.Size = new System.Drawing.Size(89, 13);
+            this.labelCargarObrero.TabIndex = 6;
+            this.labelCargarObrero.Text = "Cargue un obrero";
+            // 
+            // textBoxDNI
+            // 
+            this.textBoxDNI.Location = new System.Drawing.Point(12, 296);
+            this.textBoxDNI.Name = "textBoxDNI";
+            this.textBoxDNI.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDNI.TabIndex = 7;
+            // 
+            // textBoxNombre
+            // 
+            this.textBoxNombre.Location = new System.Drawing.Point(132, 296);
+            this.textBoxNombre.Name = "textBoxNombre";
+            this.textBoxNombre.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNombre.TabIndex = 8;
+            // 
+            // buttonCargarObrero
+            // 
+            this.buttonCargarObrero.Location = new System.Drawing.Point(84, 332);
+            this.buttonCargarObrero.Name = "buttonCargarObrero";
+            this.buttonCargarObrero.Size = new System.Drawing.Size(75, 23);
+            this.buttonCargarObrero.TabIndex = 9;
+            this.buttonCargarObrero.Text = "Confirmar";
+            this.buttonCargarObrero.UseVisualStyleBackColor = true;
+            this.buttonCargarObrero.Click += new System.EventHandler(this.buttonCargarObrero_Click);
+            // 
+            // labelNombre
+            // 
+            this.labelNombre.AutoSize = true;
+            this.labelNombre.Location = new System.Drawing.Point(132, 280);
+            this.labelNombre.Name = "labelNombre";
+            this.labelNombre.Size = new System.Drawing.Size(44, 13);
+            this.labelNombre.TabIndex = 10;
+            this.labelNombre.Text = "Nombre";
+            // 
+            // labelDNI
+            // 
+            this.labelDNI.AutoSize = true;
+            this.labelDNI.Location = new System.Drawing.Point(13, 280);
+            this.labelDNI.Name = "labelDNI";
+            this.labelDNI.Size = new System.Drawing.Size(26, 13);
+            this.labelDNI.TabIndex = 11;
+            this.labelDNI.Text = "DNI";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 318);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(558, 377);
+            this.Controls.Add(this.labelDNI);
+            this.Controls.Add(this.labelNombre);
+            this.Controls.Add(this.buttonCargarObrero);
+            this.Controls.Add(this.textBoxNombre);
+            this.Controls.Add(this.textBoxDNI);
+            this.Controls.Add(this.labelCargarObrero);
+            this.Controls.Add(this.labelNombreTabla);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -192,16 +247,21 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
+        private System.Windows.Forms.Label labelNombreTabla;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem obrerosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resumenesObrasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resumenProveedoresToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.Label labelCargarObrero;
+        private System.Windows.Forms.TextBox textBoxDNI;
+        private System.Windows.Forms.TextBox textBoxNombre;
+        private System.Windows.Forms.Button buttonCargarObrero;
+        private System.Windows.Forms.Label labelNombre;
+        private System.Windows.Forms.Label labelDNI;
     }
 }
 

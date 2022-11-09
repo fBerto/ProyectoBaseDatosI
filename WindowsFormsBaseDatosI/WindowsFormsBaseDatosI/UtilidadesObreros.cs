@@ -53,5 +53,28 @@ namespace WindowsFormsBaseDatosI
 
             utilidad.deleteRow("Obrero", "CodigoObrero", codigoObrero.ToString());
         }
+
+        public void CargarObrero(Obreros obrero)
+        {
+            obrero.Codigo = GetNuevoCodigoObrero();
+
+            string query = $"INSERT INTO Obrero VALUES ({obrero.Codigo}, {obrero.Dni}, '{obrero.Nombre}')";
+
+            using (SqlConnection con = ObtenerConecionSQL())
+            {
+                con.Open();
+                using (SqlCommand command = new SqlCommand(query, con))
+                {
+                    command.ExecuteNonQuery();
+                }
+                con.Close();
+            }
+        }
+
+        private int GetNuevoCodigoObrero()
+        {
+            Random rnd = new Random();
+            return rnd.Next(5,1000);
+        }
     }
 }

@@ -25,9 +25,10 @@ namespace WindowsFormsBaseDatosI
             if (cEntidadObreros.ConnectionOk())
             {
                 MessageBox.Show("conectado");
-            }
-            else
+            } else
+            {
                 MessageBox.Show("no conectado");
+            }
         }
 
         private void Form_LoadTablaObreros(object sender, EventArgs e)
@@ -38,27 +39,17 @@ namespace WindowsFormsBaseDatosI
         private void ActualizarGrilla()
         {
             dgvObreros.AutoGenerateColumns = true;
-
-            HacerVisibleColumnaEliminar(true);
+            labelNombreTabla.Text = "Tabla de Obreros";
 
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
             dgvObreros.DataSource = null;
             dgvObreros.DataSource = TablaObreros.GetTablaObreros();
         }
 
-        private void HacerVisibleColumnaEliminar(bool esVisible)
-        {
-            UtilidadesGrilla utilidad = new UtilidadesGrilla();
-            int indiceEliminar = utilidad.ObtenerIndice(dgvObreros, "Eliminar");
-
-            dgvObreros.Columns[indiceEliminar].Visible = esVisible;
-        }
-
         private void ResumenesObras_Click(object sender, EventArgs e)
         {
             dgvObreros.AutoGenerateColumns = true;
-
-            HacerVisibleColumnaEliminar(false);
+            labelNombreTabla.Text = "Resumen de Obras";
 
             string vista = "view_ObrerosPorObras";
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
@@ -69,39 +60,12 @@ namespace WindowsFormsBaseDatosI
         private void ProcedimientoAlmacenado_Click(object sender, EventArgs e)
         {
             dgvObreros.AutoGenerateColumns = true;
-
-            HacerVisibleColumnaEliminar(false);
+            labelNombreTabla.Text = "Proveedores con materiales registrados";
 
             string procedimiento = "P_direccionProvedores";
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
             dgvObreros.DataSource = null;
             dgvObreros.DataSource = TablaObreros.GetProcedimiento(procedimiento);
-        }
-
-        private void dgvObreros_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            UtilidadesGrilla utilidad = new UtilidadesGrilla();
-
-            int indiceEliminar = utilidad.ObtenerIndice(dgvObreros, "Eliminar");
-
-            if (e.RowIndex >= 0)
-            {
-                Obreros obreroSeleccionado = dgvObreros.Rows[e.RowIndex].DataBoundItem as Obreros;
-                int codigoObrero = obreroSeleccionado.Codigo;
-
-                if (indiceEliminar == e.ColumnIndex)
-                {
-                    DialogResult resultado = MessageBox.Show("¿Está seguro que desea eliminar el obrero?", "Eliminar obrero", MessageBoxButtons.OKCancel);
-
-                    if (resultado == DialogResult.OK)
-                    {
-                        UtilidadesObreros utilidadesObreros = new UtilidadesObreros();
-                        utilidadesObreros.EliminarObrero(codigoObrero);
-
-                        ActualizarGrilla();
-                    }
-                }
-            }
         }
 
         private void obrerosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,8 +77,6 @@ namespace WindowsFormsBaseDatosI
         {
             dgvObreros.AutoGenerateColumns = true;
 
-            HacerVisibleColumnaEliminar(false);
-
             string vista = "view_ObrerosPorObras";
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
             dgvObreros.DataSource = null;
@@ -125,12 +87,23 @@ namespace WindowsFormsBaseDatosI
         {
             dgvObreros.AutoGenerateColumns = true;
 
-            HacerVisibleColumnaEliminar(false);
-
             string procedimiento = "P_direccionProvedores";
             UtilidadesObreros TablaObreros = new UtilidadesObreros();
             dgvObreros.DataSource = null;
             dgvObreros.DataSource = TablaObreros.GetProcedimiento(procedimiento);
+        }
+
+        private void buttonCargarObrero_Click(object sender, EventArgs e)
+        {
+            string nombre = textBoxNombre.Text;
+            int dni = int.Parse(textBoxDNI.Text);
+
+            Obreros nuevoObrero = new Obreros(0, dni, nombre);
+            
+            UtilidadesObreros utilidad = new UtilidadesObreros();
+            utilidad.CargarObrero(nuevoObrero);
+
+            ActualizarGrilla();
         }
     }
 }
