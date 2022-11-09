@@ -37,7 +37,7 @@ namespace WindowsFormsBaseDatosI
 
         private void ActualizarGrilla()
         {
-            dgvObreros.AutoGenerateColumns = false;
+            dgvObreros.AutoGenerateColumns = true;
 
             HacerVisibleColumnaEliminar(true);
 
@@ -102,6 +102,35 @@ namespace WindowsFormsBaseDatosI
                     }
                 }
             }
+        }
+
+        private void obrerosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ActualizarGrilla();
+        }
+
+        private void resumenesObrasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dgvObreros.AutoGenerateColumns = true;
+
+            HacerVisibleColumnaEliminar(false);
+
+            string vista = "view_ObrerosPorObras";
+            UtilidadesObreros TablaObreros = new UtilidadesObreros();
+            dgvObreros.DataSource = null;
+            dgvObreros.DataSource = TablaObreros.GetVista(vista);
+        }
+
+        private void resumenProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dgvObreros.AutoGenerateColumns = true;
+
+            HacerVisibleColumnaEliminar(false);
+
+            string procedimiento = "P_direccionProvedores";
+            UtilidadesObreros TablaObreros = new UtilidadesObreros();
+            dgvObreros.DataSource = null;
+            dgvObreros.DataSource = TablaObreros.GetProcedimiento(procedimiento);
         }
     }
 }
