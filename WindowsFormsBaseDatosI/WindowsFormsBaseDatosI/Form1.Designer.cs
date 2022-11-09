@@ -65,9 +65,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(361, 332);
+            this.button1.Location = new System.Drawing.Point(331, 332);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 23);
+            this.button1.Size = new System.Drawing.Size(161, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Base Conectada?";
             this.button1.UseVisualStyleBackColor = true;
@@ -75,9 +75,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(345, 292);
+            this.button2.Location = new System.Drawing.Point(331, 292);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(134, 24);
+            this.button2.Size = new System.Drawing.Size(161, 24);
             this.button2.TabIndex = 2;
             this.button2.Text = "Resumenes de Obras";
             this.button2.UseVisualStyleBackColor = true;
@@ -96,7 +96,7 @@
             // labelNombreTabla
             // 
             this.labelNombreTabla.AutoSize = true;
-            this.labelNombreTabla.Location = new System.Drawing.Point(231, 24);
+            this.labelNombreTabla.Location = new System.Drawing.Point(13, 24);
             this.labelNombreTabla.Name = "labelNombreTabla";
             this.labelNombreTabla.Size = new System.Drawing.Size(105, 13);
             this.labelNombreTabla.TabIndex = 4;

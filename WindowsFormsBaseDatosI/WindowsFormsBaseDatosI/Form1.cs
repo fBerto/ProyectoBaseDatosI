@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace WindowsFormsBaseDatosI
 {
     public partial class Form1 : Form
@@ -95,15 +94,34 @@ namespace WindowsFormsBaseDatosI
 
         private void buttonCargarObrero_Click(object sender, EventArgs e)
         {
-            string nombre = textBoxNombre.Text;
-            int dni = int.Parse(textBoxDNI.Text);
+            if (Int32.TryParse(textBoxDNI.Text, out int dni))
+            {
+                string nombre = textBoxNombre.Text;
 
-            Obreros nuevoObrero = new Obreros(0, dni, nombre);
-            
-            UtilidadesObreros utilidad = new UtilidadesObreros();
-            utilidad.CargarObrero(nuevoObrero);
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    Obreros nuevoObrero = new Obreros(0, dni, nombre);
 
-            ActualizarGrilla();
+                    UtilidadesObreros utilidad = new UtilidadesObreros();
+                    utilidad.CargarObrero(nuevoObrero);
+
+                    ActualizarGrilla();
+
+                    BorrarContenidoLabels();
+                } else
+                {
+                    MessageBox.Show("Pato, no podes dejar el nombre vacio", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } else
+            {
+                MessageBox.Show("El DNI es numerico pato", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BorrarContenidoLabels()
+        {
+            labelDNI.Text = "";
+            labelNombre.Text = "";
         }
     }
 }
